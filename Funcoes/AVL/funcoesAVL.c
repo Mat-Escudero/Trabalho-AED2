@@ -119,7 +119,7 @@ struct NodeAVL* removerAVL(struct NodeAVL* raiz, int valor) {
 
 struct NodeAVL* buscarAVL(struct NodeAVL* raiz, int valor) {
     if (raiz == NULL)
-        return NULL;  // Valor não encontrado
+        return NULL; 
 
     if (valor == raiz->valor)
         return raiz;   // Valor encontrado
@@ -167,15 +167,6 @@ struct NodeAVL* rotacaoEsquerdaAVL(struct NodeAVL* x) {
     y->altura = 1 + max(alturaAVL(y->filhoEsq), alturaAVL(y->filhoDir));
 
     return y;
-}
-
-struct NodeAVL* rotacaoDireitaEsquerdaAVL(struct NodeAVL* no) {
-    no->filhoDir = rotacaoDireitaAVL(no->filhoDir);
-    return rotacaoEsquerdaAVL(no);
-}
-struct NodeAVL* rotacaoEsquerdaDireitaAVL(struct NodeAVL* no) {
-    no->filhoEsq = rotacaoEsquerdaAVL(no->filhoEsq);
-    return rotacaoDireitaAVL(no);
 }
 
 // Utilitarios

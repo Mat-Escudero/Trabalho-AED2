@@ -79,21 +79,19 @@ struct NodeRN* removerRN(struct NodeRN* raiz, struct NodeRN* remover, int valor)
             return NULL;
         }
     
-        // Guarda o pai antes de liberar
+        
         struct NodeRN* pai = remover->pai;
         
         if (pai->esq == remover) pai->esq = NULL;
         else pai->dir = NULL;
-        // Se for vermelho, só remover
+        
         if (remover->cor == VERMELHO) {
             free(remover);
             return raiz;
         }
         free(remover);
-        // Se for preto, balancear
-        // Desconecta do pai
-        // Aqui, x é NULL, mas o pai ainda existe
-        raiz = balancearRemocaoRN(raiz, NULL, pai);  // Nova assinatura com pai
+
+        raiz = balancearRemocaoRN(raiz, NULL, pai);
         return raiz;
     } 
     else if (remover->esq == NULL && remover->dir != NULL) {
@@ -108,7 +106,7 @@ struct NodeRN* removerRN(struct NodeRN* raiz, struct NodeRN* remover, int valor)
         }
         struct NodeRN* pai = remover->pai;
 
-        // Ajusta o pai do filho
+        
         filho->pai = pai;
 
         if (pai->esq == remover) {
@@ -128,7 +126,7 @@ struct NodeRN* removerRN(struct NodeRN* raiz, struct NodeRN* remover, int valor)
             }
         }
 
-        // Finalmente libera remover
+       
         free(remover);
         return raiz;
         
@@ -145,7 +143,7 @@ struct NodeRN* removerRN(struct NodeRN* raiz, struct NodeRN* remover, int valor)
         }
         struct NodeRN* pai = remover->pai;
 
-        // Ajusta o pai do filho
+        
         filho->pai = pai;
 
         if (pai->esq == remover) {
@@ -165,7 +163,7 @@ struct NodeRN* removerRN(struct NodeRN* raiz, struct NodeRN* remover, int valor)
             }
         }
 
-        // Finalmente libera remover
+        
         free(remover);
         return raiz;
     }
@@ -275,7 +273,7 @@ struct NodeRN* balancearInsercaoRN(struct NodeRN* raiz, struct NodeRN* no) {
 }
 
 struct NodeRN* balancearRemocaoRN(struct NodeRN* raiz, struct NodeRN* x, struct NodeRN* pai) {
-    // Enquanto x for duplo‑preto (NULL ou preto) e não for raiz
+    
     while ((x == NULL || x->cor == PRETO) && x != raiz) {
         // Se x é filho esquerdo de pai
         if (pai->esq == x) {
@@ -311,7 +309,7 @@ struct NodeRN* balancearRemocaoRN(struct NodeRN* raiz, struct NodeRN* x, struct 
                     if (w->dir) w->dir->cor = PRETO;
                     raiz = rotacaoEsquerdaRN(raiz, pai);
                 }
-                x = raiz;  // força saída do loop
+                x = raiz;
             }
         }
         // Simétrico: x é filho direito
