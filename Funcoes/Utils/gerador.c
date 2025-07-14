@@ -6,15 +6,29 @@
 
 #include "gerador.h"
 
-int* gerarNumerosAleatorios(int n, int min_val, int max_val) {
-    if (n <= 0 || min_val > max_val) return NULL;
-
-    int* vetor = (int*) malloc(sizeof(int) * n);
-    if (!vetor) return NULL;
+// Parâmetros tamanho do vetor, fração desejada de colisões (0, 1), valor inicial do contador
+int* gerarNumerosAleatorios(int n, double p, int base) {
+    int* v = malloc(sizeof(int)*n);
+    int* uniques = malloc(sizeof(int)*n);
+    int u = 0, next = base;
 
     for (int i = 0; i < n; i++) {
-        vetor[i] = min_val + rand() % (max_val - min_val + 1);
+        double r = (double)rand() / RAND_MAX;
+        if (u > 0 && r < p) {
+            v[i] = uniques[rand() % u];      // colisão
+        } else {
+            v[i] = next;                     // novo valor
+            uniques[u++] = next;
+            next++;
+        }
     }
-
-    return vetor;
+    /* Fisher–Yates shuffle */
+    for (int i = n-1; i > 0; i--) {
+        int j = rand() % (i + 1);
+        int tmp = v[i]; v[i] = v[j]; v[j] = tmp;
+    }
+    free(uniques);
+    return v;
 }
+
+

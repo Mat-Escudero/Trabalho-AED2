@@ -209,3 +209,14 @@ void inOrdemAVL(struct NodeAVL* raiz) {
     printf("%d ", raiz->valor);
     inOrdemAVL(raiz->filhoDir);
 }
+
+int maxAlturaAVL(struct NodeAVL* raiz) {
+    if (raiz == NULL) {
+        return 0;                  // árvore vazia → altura 0
+    }
+
+    int alt_esq = maxAlturaAVL(raiz->filhoEsq);
+    int alt_dir = maxAlturaAVL(raiz->filhoDir);
+
+    return 1 + (alt_esq > alt_dir ? alt_esq : alt_dir);
+}

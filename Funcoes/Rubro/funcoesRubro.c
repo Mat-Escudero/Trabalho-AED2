@@ -63,7 +63,7 @@ struct NodeRN* buscarRN(struct NodeRN* raiz, int valor) {
     }
     return x;
 }
-
+//tem que ter a raiz, o node a remover(use a funcao buscar) e o valor
 struct NodeRN* removerRN(struct NodeRN* raiz, struct NodeRN* remover, int valor) {
     if (remover == NULL) {
         remover = buscarRN(raiz, valor);
@@ -408,4 +408,15 @@ void inOrdemRN(struct NodeRN* raiz) {
     inOrdemRN(raiz->esq);
     printf("%d(%s) ", raiz->valor, raiz->cor == VERMELHO ? "R" : "P");
     inOrdemRN(raiz->dir);
+}
+
+int maxAlturaRN(struct NodeRN* raiz) {
+    if (raiz == NULL) {
+        return 0; // ou 0, depende se considera raiz como nível 0 ou 1
+    }
+
+    int alt_esq = maxAlturaRN(raiz->esq);
+    int alt_dir = maxAlturaRN(raiz->dir);
+
+    return 1 + (alt_esq > alt_dir ? alt_esq : alt_dir);
 }

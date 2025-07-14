@@ -29,5 +29,6 @@ void destruirArvoreRN(struct NodeRN* raiz);
 void preOrdemRN(struct NodeRN* raiz);
 void posOrdemRN(struct NodeRN* raiz);
 void inOrdemRN(struct NodeRN* raiz);
+int maxAlturaRN(struct NodeRN* raiz);
 
 #endif

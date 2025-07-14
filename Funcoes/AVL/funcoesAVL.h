@@ -24,5 +24,6 @@ void destruirArvoreAVL(struct NodeAVL* raiz);
 void preOrdemAVL(struct NodeAVL* raiz);
 void posOrdemAVL(struct NodeAVL* raiz);
 void inOrdemAVL(struct NodeAVL* raiz);
+int maxAlturaAVL(struct NodeAVL* raiz);
 
 #endif
