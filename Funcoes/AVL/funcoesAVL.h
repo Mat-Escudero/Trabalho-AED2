@@ -1,6 +1,9 @@
 #ifndef FUNCOESAVL_H
 #define FUNCOESAVL_H
 
+extern int contadorRotacaoDireitaAVL;
+extern int contadorRotacaoEsquerdaAVL;
+
 struct NodeAVL {
     int valor;
     int altura;
@@ -25,5 +28,7 @@ void preOrdemAVL(struct NodeAVL* raiz);
 void posOrdemAVL(struct NodeAVL* raiz);
 void inOrdemAVL(struct NodeAVL* raiz);
 int maxAlturaAVL(struct NodeAVL* raiz);
+void preencherArrayAVL(struct NodeAVL* raiz, int* array, int* index);
+int maiorValorAVL(struct NodeAVL* raiz);
 
 #endif

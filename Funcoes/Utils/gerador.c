@@ -30,5 +30,3 @@ int* gerarNumerosAleatorios(int n, double p, int base) {
     free(uniques);
     return v;
 }
-
-

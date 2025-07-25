@@ -4,6 +4,9 @@
 #define VERMELHO 1
 #define PRETO 0
 
+extern int contadorRotacaoDireitaRN;
+extern int contadorRotacaoEsquerdaRN;
+
 struct NodeRN {
     int valor;
     int cor;
@@ -30,5 +33,7 @@ void preOrdemRN(struct NodeRN* raiz);
 void posOrdemRN(struct NodeRN* raiz);
 void inOrdemRN(struct NodeRN* raiz);
 int maxAlturaRN(struct NodeRN* raiz);
+void preencherArrayRN(struct NodeRN* raiz, int* array, int* index);
+int maiorValorRN(struct NodeRN* raiz);
 
 #endif

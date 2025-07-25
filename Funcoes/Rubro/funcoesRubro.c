@@ -34,17 +34,13 @@ struct NodeRN* inserirRN(struct NodeRN* raiz, int valor) {
 
     if (y->valor > valor) {
         y->esq = x;
-    }
-    if (y->valor < valor) {
+    } else {
         y->dir = x;
     }
 
-    if (y->cor == PRETO) {
-        return raiz;
-    }
-    if (y->cor == VERMELHO) {
-       raiz = balancearInsercaoRN(raiz, x);
-    }
+
+    raiz = balancearInsercaoRN(raiz, x);
+
     return raiz;
 }
 
@@ -182,6 +178,7 @@ struct NodeRN* removerRN(struct NodeRN* raiz, struct NodeRN* remover, int valor)
 struct NodeRN* rotacaoEsquerdaRN(struct NodeRN* raiz, struct NodeRN* x) {
     struct NodeRN* y = x->dir;
     x->dir = y->esq;
+    contadorRotacaoEsquerdaRN++;
 
     if (y->esq != NULL)
         y->esq->pai = x;
@@ -204,6 +201,7 @@ struct NodeRN* rotacaoEsquerdaRN(struct NodeRN* raiz, struct NodeRN* x) {
 struct NodeRN* rotacaoDireitaRN(struct NodeRN* raiz, struct NodeRN* y) {
     struct NodeRN* x = y->esq;
     y->esq = x->dir;
+    contadorRotacaoDireitaRN++;
 
     if (x->dir != NULL)
         x->dir->pai = y;
@@ -412,11 +410,30 @@ void inOrdemRN(struct NodeRN* raiz) {
 
 int maxAlturaRN(struct NodeRN* raiz) {
     if (raiz == NULL) {
-        return 0; // ou 0, depende se considera raiz como nível 0 ou 1
+        return -1; // árvore vazia → altura 0
     }
 
     int alt_esq = maxAlturaRN(raiz->esq);
     int alt_dir = maxAlturaRN(raiz->dir);
 
     return 1 + (alt_esq > alt_dir ? alt_esq : alt_dir);
+}
+
+void preencherArrayRN(struct NodeRN* raiz, int* array, int* index) {
+    if (raiz == NULL) return;
+
+    preencherArrayRN(raiz->esq, array, index);
+    array[(*index)++] = raiz->valor;
+    preencherArrayRN(raiz->dir, array, index);
+}
+
+int maiorValorRN(struct NodeRN* raiz) {
+    if (raiz == NULL) {
+        return -1;
+    }
+    struct NodeRN* temp = raiz;
+    while (temp->dir != NULL) {
+        temp = temp->dir;
+    }
+    return temp->valor;
 }

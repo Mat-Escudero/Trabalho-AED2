@@ -36,3 +36,28 @@ void imprimirComPontos(int numero) {
 
     printf("%s", formatado);
 }
+
+void quicksort(int arr[], int inicio, int fim) {
+    if (inicio >= fim) return;
+
+    int pivo = arr[fim];
+    int i = inicio - 1;
+
+    for (int j = inicio; j < fim; j++) {
+        if (arr[j] < pivo) {
+            i++;
+            // troca arr[i] e arr[j]
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+
+    // coloca o pivo na posição correta
+    int temp = arr[i + 1];
+    arr[i + 1] = arr[fim];
+    arr[fim] = temp;
+
+    quicksort(arr, inicio, i);
+    quicksort(arr, i + 2, fim);
+}

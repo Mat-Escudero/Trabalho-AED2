@@ -146,6 +146,7 @@ int fatorBalanceamentoAVL(struct NodeAVL* no) {
 struct NodeAVL* rotacaoDireitaAVL(struct NodeAVL* y) {
     struct NodeAVL* x = y->filhoEsq;
     struct NodeAVL* T2 = x->filhoDir;
+    contadorRotacaoDireitaAVL++;
 
     x->filhoDir = y;
     y->filhoEsq = T2;
@@ -159,6 +160,7 @@ struct NodeAVL* rotacaoDireitaAVL(struct NodeAVL* y) {
 struct NodeAVL* rotacaoEsquerdaAVL(struct NodeAVL* x) {
     struct NodeAVL* y = x->filhoDir;
     struct NodeAVL* T2 = y->filhoEsq;
+    contadorRotacaoEsquerdaAVL++;
 
     y->filhoEsq = x;
     x->filhoDir = T2;
@@ -212,11 +214,30 @@ void inOrdemAVL(struct NodeAVL* raiz) {
 
 int maxAlturaAVL(struct NodeAVL* raiz) {
     if (raiz == NULL) {
-        return 0;                  // árvore vazia → altura 0
+        return -1;                  // árvore vazia → altura 0
     }
 
     int alt_esq = maxAlturaAVL(raiz->filhoEsq);
     int alt_dir = maxAlturaAVL(raiz->filhoDir);
 
     return 1 + (alt_esq > alt_dir ? alt_esq : alt_dir);
+}
+
+void preencherArrayAVL(struct NodeAVL* raiz, int* array, int* index) {
+    if (raiz == NULL) return;
+
+    preencherArrayAVL(raiz->filhoEsq, array, index);
+    array[(*index)++] = raiz->valor;
+    preencherArrayAVL(raiz->filhoDir, array, index);
+}
+
+int maiorValorAVL(struct NodeAVL* raiz) {
+    if (raiz == NULL) {
+        return -1;
+    }
+    struct NodeAVL* temp = raiz;
+    while (temp->filhoDir != NULL) {
+        temp = temp->filhoDir;
+    }
+    return temp->valor;
 }
