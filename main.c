@@ -391,9 +391,6 @@ void caso1_2() {
     }
     for (int j = 0; j < testes; j++) {
         // início inserção AVL
-        // for (int i = 0; i < tamanhoArray; i++) {
-        //     printf("%i ", numeros[i]);
-        // }
         inicio = clock();
         for (int i = 0; i < tamanhoArray; i++) {
             raizAVL = inserirAVL(raizAVL, numeros[i]);
@@ -434,6 +431,7 @@ void caso1_2() {
         raizAVL = NULL;
     }
 
+    // print da tabela
     printf("\n================== TEMPO MEDIO ==================\n");
     printf("| Arvore       | Tempo (segundos)               |\n");
     printf("|--------------|--------------------------------|\n");
@@ -444,7 +442,8 @@ void caso1_2() {
     printf("Insercao ordenada gera muitas rotacoes previsiveis, favorecendo a localidade de memoria e predicao de branches, resultando em maior desempenho.\n");
     printf("Logo, ela eh mais rapida que a aleatoria devido ao funcionamento da memoria, porem analiticamente demora mais por gerar mais rotacoes.\n");
 
-    //printf("%i\n%i\n%i\n%i\n", contadorRotacaoDireitaAVL, contadorRotacaoEsquerdaAVL, contadorRotacaoDireitaRN, contadorRotacaoEsquerdaRN);
+    // caso queira printar/saber quantas rotaçoes houveram nas duas arvores, usa uma variavel globa, entao pode usar esse print em qualquer funçao:
+    // printf("%i\n%i\n%i\n%i\n", contadorRotacaoDireitaAVL, contadorRotacaoEsquerdaAVL, contadorRotacaoDireitaRN, contadorRotacaoEsquerdaRN);
 
 }
 
@@ -529,7 +528,7 @@ void caso1_3() {
         }
     
         fim = clock();
-    
+        
         tempoExecucao = (double)(fim - inicio) / CLOCKS_PER_SEC;
         tempoMedioRubro += tempoExecucao;
         printf("Tempo de execucao para buscar ");
@@ -537,6 +536,7 @@ void caso1_3() {
         printf(" elementos na arvore Rubro = %.6f segundos.\n", tempoExecucao);
     }
 
+    // print da tabela
     printf("\n================== TEMPO MEDIO ==================\n");
     printf("| Arvore       | Tempo (segundos)               |\n");
     printf("|--------------|--------------------------------|\n");
@@ -612,6 +612,7 @@ void caso1_4() {
     
     tempoExecucaoRN = (double)(fim - inicio) / CLOCKS_PER_SEC;
 
+    // print da tabela
     int espacos = 11, razaoPonto = (int) (expoenteRemocoes/3);
     espacos = espacos - razaoPonto - expoenteRemocoes;
 
@@ -670,9 +671,8 @@ void caso1_5() {
 
 
     free(numeros);
-    // printf("\nAltura maxima atingida em cada tipo de arvore:\n");
-    // printf(" AVL: %i\n", maxAlturaAVL(raizAVL));
-    // printf(" Rubro-Negra: %i\n", maxAlturaRN(raizRN));
+
+    // print da tabela
     int alturaMaxAVL = maxAlturaAVL(raizAVL), alturaMaxRN = maxAlturaRN(raizRN);
     int espacosAVL = 30, espacosRN = 30;
     if (alturaMaxAVL > 10) {
@@ -902,29 +902,7 @@ void caso1_6() {
         free(arrayRemoverRand);
     }
 
-    printf("Foram realizados ");
-    imprimirComPontos(loops);
-    printf(" loops.\n");
-
-    printf("Na arvore AVL:\n");
-    printf("  Insercoes: ");
-    imprimirComPontos(totalInsercaoAVL);
-    printf("\n  Remocoes: ");
-    imprimirComPontos(totalRemocaoAVL);
-    printf("\n");
-
-    printf("Na arvore Rubro-Negra:\n");
-    printf("  Insercoes: ");
-    imprimirComPontos(totalInsercaoRN);
-    printf("\n  Remocoes: ");
-    imprimirComPontos(totalRemocaoRN);
-    printf("\n");
-
-    printf("A ideia eh que a quantidade de insercoes e remocoes sejam iguals entre as duas arvores, obviamente, mas foi printado os dois casos so para garatir\n");
-    printf("\n");
-    printf(" Tempo de insercao e remocao da AVL foi: %.6f\n", tempoExecucaoAVL);
-    printf(" Tempo de insercao e remocao da Rubro foi: %.6f\n", tempoExecucaoRN);
-
+    // Print da tabela
     int espacosInsercaoAVL = 10, espacosInsercaoRN = 10;
     int tamanhoInsercaoAVL = 1, tempTotalInsercaoAVL = totalInsercaoAVL;
     int tamanhoInsercaoRN = 1, tempTotalInsercaoRN = totalInsercaoRN;
@@ -990,7 +968,7 @@ void caso1_6() {
         printf(" ");
     }
     printf("|\n");
-    //
+    
     printf("| Rubro-Negra  | %.6f        ", tempoExecucaoRN);
 
     if (tempoExecucaoAVL < 10 || tempoExecucaoRN < 10) {
