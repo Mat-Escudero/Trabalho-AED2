@@ -32,7 +32,7 @@ int main() {
         printf("2) Insercao de elementos em ordem (crescente/decrescente)\n");
         printf("3) Busca de elementos da arvore\n");
         printf("4) Remocao de elementos da arvore\n");
-        printf("5) Altura maxima\n");
+        printf("5) Altura do no mais profundo\n");
         printf("6) Caso realista\n");
         printf("0) Encerrar programa\n");
         printf("Escolha uma opcao: ");
@@ -681,7 +681,7 @@ void caso1_5() {
     if (alturaMaxRN > 10) {
         espacosRN--;
     }
-    printf("\n================== ALTURA MAXIMA ===============\n");
+    printf("\n============ ALTURA DO NO MAIS PROFUNDO =========\n");
     printf("| Arvore       | ALTURA                         |\n");
     printf("|--------------|--------------------------------|\n");
     printf("| AVL          | %i", alturaMaxAVL);
