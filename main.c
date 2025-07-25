@@ -757,6 +757,13 @@ void caso1_6() {
     } else {
         loops = 10000; 
     }
+    printf("Gostaria de determinar a quantidade de loops? Cada loop eh predeterminado baseado no max e min da arvore e as insercoes e remocoes do loop tambem.\n");
+    printf("Se sim, digite o valor do loop, se nao digite -1.\n");
+    int is_active = 0;
+    scanf("%i", &is_active);
+    if (is_active >= 0) {
+        loops = is_active;
+    }
     int tamanhoInicial = (max + min) / 2;
     int *numeros = gerarNumerosAleatorios(tamanhoInicial, 0, 0);
 
@@ -944,9 +951,14 @@ void caso1_6() {
     tamanhoLoop += (int) ((tamanhoLoop - 1)/3);
     espacosLoop = espacosLoop - tamanhoLoop;
 
-    printf("\n============================ TEMPO MEDIO ===========================\n");
-    printf("| Arvore       | Tempo (segundos) | Insercoes | Remocoes  | Loops  |\n");
-    printf("|--------------|---------------------------------------------------|\n");
+    float TempoInsercaoPorMilhaoAVL = (tempoExecucaoAVL * 1000000.0f) / (float)totalInsercaoAVL;
+    float TempoRemocaoPorMilhaoAVL = (tempoExecucaoAVL * 1000000.0f) / (float)totalRemocaoAVL;
+    float TempoInsercaoPorMilhaoRN = (tempoExecucaoRN * 1000000.0f) / (float)totalInsercaoRN;
+    float TempoRemocaoPorMilhaoRN = (tempoExecucaoRN * 1000000.0f) / (float)totalRemocaoRN;
+
+    printf("\n================================================ TEMPO MEDIO ================================================\n");
+    printf("| Arvore       | Tempo (segundos) | Insercoes | Remocoes  | Loops  | Tempo Insercao/1kk | Tempo Remocao/1kk |\n");
+    printf("|--------------|--------------------------------------------------------------------------------------------|\n");
     printf("| AVL          | %.6f        ", tempoExecucaoAVL);
 
     if (tempoExecucaoAVL < 10 || tempoExecucaoRN < 10) {
@@ -965,6 +977,16 @@ void caso1_6() {
     printf("| ");
     imprimirComPontos(loops);
     for (int i = 0; i < espacosLoop; i++) {
+        printf(" ");
+    }
+    printf("| ");
+    printf("%.6f", TempoInsercaoPorMilhaoAVL);
+    for (int i = 0; i < 11; i++) {
+        printf(" ");
+    }
+    printf("| ");
+    printf("%.6f", TempoRemocaoPorMilhaoAVL);
+    for (int i = 0; i < 10; i++) {
         printf(" ");
     }
     printf("|\n");
@@ -989,6 +1011,16 @@ void caso1_6() {
     for (int i = 0; i < espacosLoop; i++) {
         printf(" ");
     }
+    printf("| ");
+    printf("%.6f", TempoInsercaoPorMilhaoRN);
+    for (int i = 0; i < 11; i++) {
+        printf(" ");
+    }
+    printf("| ");
+    printf("%.6f", TempoRemocaoPorMilhaoRN);
+    for (int i = 0; i < 10; i++) {
+        printf(" ");
+    }
     printf("|\n");
-    printf("====================================================================\n");
+    printf("=============================================================================================================\n");
 }   
