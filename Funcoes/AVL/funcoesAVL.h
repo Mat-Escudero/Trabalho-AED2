@@ -30,5 +30,7 @@ void inOrdemAVL(struct NodeAVL* raiz);
 int maxAlturaAVL(struct NodeAVL* raiz);
 void preencherArrayAVL(struct NodeAVL* raiz, int* array, int* index);
 int maiorValorAVL(struct NodeAVL* raiz);
+int contarNosAVL(struct NodeAVL* raiz);
+int is_AVL(struct NodeAVL* raiz);
 
 #endif

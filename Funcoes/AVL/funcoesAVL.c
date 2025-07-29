@@ -241,3 +241,30 @@ int maiorValorAVL(struct NodeAVL* raiz) {
     }
     return temp->valor;
 }
+
+int contarNosAVL(struct NodeAVL* raiz) {
+    if (raiz == NULL) {
+        return 0;
+    }
+    return 1 + contarNosAVL(raiz->filhoEsq) + contarNosAVL(raiz->filhoDir);
+}
+
+int is_AVL(struct NodeAVL* raiz) {
+    if (raiz == NULL) return 1;
+
+    int alturaEsq = alturaAVL(raiz->filhoEsq);
+    int alturaDir = alturaAVL(raiz->filhoDir);
+
+    // Verifica se o fator de balanceamento está entre -1 e 1
+    int balanceamento = alturaEsq - alturaDir;
+    if (balanceamento < -1 || balanceamento > 1)
+        return 0;
+
+    // Verifica se a altura armazenada é correta
+    int alturaCalculada = 1 + max(alturaEsq, alturaDir);
+    if (raiz->altura != alturaCalculada)
+        return 0;
+
+    // Recursivamente verifica subárvores
+    return is_AVL(raiz->filhoEsq) && is_AVL(raiz->filhoDir);
+}

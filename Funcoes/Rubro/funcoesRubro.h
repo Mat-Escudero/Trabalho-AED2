@@ -35,5 +35,9 @@ void inOrdemRN(struct NodeRN* raiz);
 int maxAlturaRN(struct NodeRN* raiz);
 void preencherArrayRN(struct NodeRN* raiz, int* array, int* index);
 int maiorValorRN(struct NodeRN* raiz);
+int is_RN(struct NodeRN* raiz);
+int raizPreta(struct NodeRN* raiz);
+int blackHeight(struct NodeRN* raiz);
+int checarRegraVermelho(struct NodeRN* raiz);
 
 #endif

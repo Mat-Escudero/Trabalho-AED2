@@ -437,3 +437,51 @@ int maiorValorRN(struct NodeRN* raiz) {
     }
     return temp->valor;
 }
+
+// Função auxiliar para checar se dois nós consecutivos vermelhos existem
+int checarRegraVermelho(struct NodeRN* raiz) {
+    if (raiz == NULL) return 1;
+
+    if (raiz->cor == VERMELHO) {
+        if ((raiz->esq && raiz->esq->cor == VERMELHO) || (raiz->dir && raiz->dir->cor == VERMELHO)) {
+            return 0; // Regra violada
+        }
+    }
+
+    return checarRegraVermelho(raiz->esq) && checarRegraVermelho(raiz->dir);
+}
+
+// Função que retorna a black-height ou -1 se estiver inconsistente
+int blackHeight(struct NodeRN* raiz) {
+    if (raiz == NULL) return 1; // NULL conta como 1 preto (folhas são pretas)
+
+    int esq = blackHeight(raiz->esq);
+    int dir = blackHeight(raiz->dir);
+
+    if (esq == -1 || dir == -1 || esq != dir) return -1;
+
+    return esq + (raiz->cor == PRETO ? 1 : 0);
+}
+
+int raizPreta(struct NodeRN* raiz) {
+    return raiz == NULL || raiz->cor == PRETO;
+}
+
+int is_RN(struct NodeRN* raiz) {
+    if (!raizPreta(raiz)) {
+        printf("Raiz não é preta!\n");
+        return 0;
+    }
+
+    if (!checarRegraVermelho(raiz)) {
+        printf("Há dois nós vermelhos consecutivos!\n");
+        return 0;
+    }
+
+    if (blackHeight(raiz) == -1) {
+        printf("Black-height inconsistente!\n");
+        return 0;
+    }
+
+    return 1;
+}
