@@ -29,7 +29,7 @@ int main() {
     while (opc != 0) {
         printf("\n====== MENU DE TESTES ======\n");
         printf("1) Insercao de elementos aleatorios\n");
-        printf("2) Insercao de elementos em ordem (crescente/decrescente)\n");
+        printf("2) Insercao de elementos em ordem (crescente/decrescente) // DESCONTINUADO\n");
         printf("3) Busca de elementos da arvore\n");
         printf("4) Remocao de elementos da arvore\n");
         printf("5) Altura do no mais profundo\n");
